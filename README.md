@@ -41,7 +41,7 @@ You can explore it three ways: a **web app** with a built-in **chat assistant**,
 ## Demo
 
 <p align="center">
-  <a href="demo/demo.mp4"><b>▶ Watch the full demo video (about 80 seconds)</b></a>
+  <a href="demo/demo.mp4"><b>▶ Watch the full demo video</b></a>
 </p>
 
 ## How it works
