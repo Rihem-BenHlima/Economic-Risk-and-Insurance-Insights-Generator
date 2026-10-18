@@ -50,16 +50,16 @@ You can explore it three ways: a **web app** with a built-in **chat assistant**,
 
 ```mermaid
 flowchart LR
-    A[Raw data<br/>data/] --> B[Step 1<br/>Clean and merge]
-    B --> C[data/processed<br/>modeling_table.csv]
-    C --> D[Step 2<br/>Train, test, forecast]
-    D --> E[step_02_forecasting/results<br/>forecasts, metrics]
-    C --> F[Step 3<br/>Dash dashboard]
-    E --> F
-    C --> G[Backend<br/>read-only tools]
-    E --> G
-    G --> H[Gemini or<br/>offline model]
-    H --> I[Web app + chat<br/>frontend/]
+    A[Raw data<br/>data/] --- B[Step 1<br/>Clean and merge]
+    B --- C[data/processed<br/>modeling_table.csv]
+    C --- D[Step 2<br/>Train, test, forecast]
+    D --- E[step_02_forecasting/results<br/>forecasts, metrics]
+    C --- F[Step 3<br/>Dash dashboard]
+    E --- F
+    C --- G[Backend<br/>read-only tools]
+    E --- G
+    G --- H[Gemini or<br/>offline model]
+    H --- I[Web app + chat<br/>frontend/]
 ```
 
 1. **Step 1, extraction and cleaning** (`step_01_extraction/`). Gaps are filled only when two sources agree, series with a changed base year are chain-linked, and data that cannot be repaired is removed, not guessed. Every change is logged and audited.
