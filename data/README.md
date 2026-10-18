@@ -1,8 +1,6 @@
 # Data
 
-The data files are not pushed to the repository (see `.gitignore`: nothing in `data/` is pushed except this file and the empty folder markers). To run the project, download or place the files listed below into the folder shown for each source. Everything is for **Tunisia** unless noted, and money is in million Tunisian dinars (M.TND) unless a column says otherwise.
-
-**About the links.** The addresses below are the websites each dataset comes from. The exact download pages were not recorded in the files, so open the site and look for the dataset named in the table. The ones marked (from the files) were found inside the data itself.
+**About the links.** The addresses below are the websites each dataset comes from. The exact download pages were not recorded in the files, so open the site and look for the dataset named in the table. The ones marked were found inside the data itself.
 
 ```
 data/
