@@ -1,0 +1,16 @@
+series,model,step,n,MAE,RMSE,CVRMSE_%,R2,MAPE_%,MASE,bias,coverage_80_%
+premiums_total,ensemble,1,9,50.02,56.68,2.09,0.9916,1.89,0.43,-11.49,77.78
+premiums_total,ensemble,2,8,89.27,94.74,3.35,0.9725,3.33,0.81,-12.73,75.0
+premiums_total,ensemble,3,7,104.64,125.9,4.29,0.9442,3.57,0.94,-6.56,
+premiums_life,ensemble,1,9,30.65,37.08,5.35,0.9772,4.19,0.87,-1.02,77.78
+premiums_life,ensemble,2,8,35.36,40.95,5.59,0.9687,5.23,1.16,9.03,75.0
+premiums_life,ensemble,3,7,43.16,47.39,6.12,0.9526,6.25,1.51,10.75,
+premiums_auto,ensemble,1,9,18.48,24.6,2.13,0.9869,1.75,0.37,9.93,77.78
+premiums_auto,ensemble,2,8,25.62,33.33,2.79,0.9705,2.3,0.52,17.0,75.0
+premiums_auto,ensemble,3,7,38.72,54.24,4.41,0.9095,3.3,0.79,38.72,
+premiums_health,ensemble,1,9,8.17,10.5,2.62,0.9894,2.05,0.51,-5.15,77.78
+premiums_health,ensemble,2,8,14.56,18.86,4.53,0.9609,3.28,0.9,-9.65,75.0
+premiums_health,ensemble,3,7,19.2,23.95,5.52,0.9277,4.08,1.23,-12.79,
+claims_paid_total,ensemble,1,9,84.27,108.09,7.16,0.9159,5.55,1.31,-33.59,77.78
+claims_paid_total,ensemble,2,8,80.48,102.49,6.53,0.9142,5.29,1.35,-27.89,75.0
+claims_paid_total,ensemble,3,7,79.14,87.22,5.31,0.9211,4.76,1.3,-59.88,

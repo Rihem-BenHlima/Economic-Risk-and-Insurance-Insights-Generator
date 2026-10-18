@@ -1,0 +1,16 @@
+series,model,step,n,MAE,RMSE,CVRMSE_%,R2,MAPE_%,MASE,bias,coverage_80_%
+premiums_total,random_forest,1,10,44.46,49.19,1.88,0.9945,1.75,0.4,-10.29,80.0
+premiums_total,random_forest,2,9,72.98,85.95,3.16,0.9807,2.76,0.67,-25.63,77.78
+premiums_total,random_forest,3,8,110.71,120.94,4.28,0.9552,3.9,1.02,-42.45,75.0
+premiums_life,random_forest,1,10,29.16,37.11,5.68,0.9797,4.09,0.83,-0.99,80.0
+premiums_life,random_forest,2,9,31.0,38.78,5.6,0.975,4.7,1.04,4.0,77.78
+premiums_life,random_forest,3,8,35.5,42.61,5.82,0.9661,5.52,1.3,5.84,75.0
+premiums_auto,random_forest,1,10,18.94,23.91,2.14,0.9896,1.77,0.38,10.81,80.0
+premiums_auto,random_forest,2,9,22.75,28.33,2.46,0.9826,1.99,0.46,12.41,77.78
+premiums_auto,random_forest,3,8,34.23,44.41,3.72,0.9476,2.9,0.7,21.58,75.0
+premiums_health,random_forest,1,10,7.05,9.01,2.35,0.993,1.82,0.45,-4.2,80.0
+premiums_health,random_forest,2,9,14.37,18.14,4.54,0.9682,3.45,0.93,-9.14,77.78
+premiums_health,random_forest,3,8,21.12,25.38,6.09,0.9292,4.85,1.43,-13.57,75.0
+claims_paid_total,random_forest,1,10,85.91,113.48,7.81,0.9161,5.69,1.34,-38.68,80.0
+claims_paid_total,random_forest,2,9,75.93,92.35,6.12,0.9386,5.05,1.27,-19.42,77.78
+claims_paid_total,random_forest,3,8,75.43,88.59,5.64,0.9359,4.61,1.25,-45.27,75.0
