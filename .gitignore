@@ -1,0 +1,47 @@
+# --- secrets: never pushed ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+id_rsa*
+id_ed25519*
+secrets.*
+credentials*.json
+*.token
+
+# --- local tool settings and memory (they hold local paths and permissions) ---
+.claude/
+.vscode/
+.idea/
+
+# --- logs, caches, compiled files, local databases ---
+*.log
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.sqlite
+*.sqlite3
+*.db
+.DS_Store
+Thumbs.db
+
+# --- csv files: never pushed, anywhere in the project ---
+*.csv
+*.CSV
+# ...except the metrics files (model accuracy results)
+!metrics.csv
+!*_metrics.csv
+
+# --- trained models: the model folders are pushed, what is inside them never is (retrain with run_all_models.py) ---
+step_02_forecasting/*/model/*
+!step_02_forecasting/*/model/.gitkeep
+
+# --- data: the folders and data/README.md are pushed; every data file in them (csv or not) never is ---
+data/**
+!data/**/
+!data/README.md
+!data/**/.gitkeep
