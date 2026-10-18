@@ -1,6 +1,6 @@
 <div align="center">
 
-# Tunisia Risk & Insurance Insights
+# Economic Risk and Insurance Insights Generator
 
 **From raw official statistics to honest forecasts of the Tunisian insurance market, with a dashboard and an AI assistant you can ask in plain English.**
 
@@ -9,7 +9,7 @@
 ![Assistant](https://img.shields.io/badge/Assistant-Gemini%20%2B%20offline%20fallback-1f8f82)
 ![Data](https://img.shields.io/badge/Data-2003%E2%80%932024-c08a3e)
 
-<img src="frontend/img/01-sousse.jpg" alt="Sousse, Tunisia" width="720">
+<img src="demo/demo.gif" alt="Demo: the dashboard pages, then the chat assistant answering questions" width="900">
 
 </div>
 
@@ -41,23 +41,8 @@ You can explore it three ways: a **web app** with a built-in **chat assistant**,
 ## Demo
 
 <p align="center">
-  <a href="demo/demo.mp4"><b>▶ Watch the demo video</b></a>
+  <a href="demo/demo.mp4"><b>▶ Watch the full demo video (about 80 seconds)</b></a>
 </p>
-
-<!-- Live demo link (if you host it): [Open the demo](https://your-link-here) -->
-
-<!-- Video or animated GIF of the chat (about 30 seconds):
-<p align="center"><img src="demo/chat.gif" alt="Asking the assistant a question" width="760"></p>
--->
-
-| Page | Screenshot |
-|---|---|
-| **Overview**: headline forecast, key figures, premiums and claims | <!-- <img src="demo/overview.png" width="380"> --> *demo/overview.png* |
-| **Forecasts**: any series and model, with the 80% range | <!-- <img src="demo/forecasts.png" width="380"> --> *demo/forecasts.png* |
-| **Insurance, Economy, Labour, Agriculture, Climate** | <!-- <img src="demo/pages.png" width="380"> --> *demo/pages.png* |
-| **Chat assistant**: a question with its answer | <!-- <img src="demo/chat.png" width="380"> --> *demo/chat.png* |
-| **Full-page chat** with history | <!-- <img src="demo/chat-full.png" width="380"> --> *demo/chat-full.png* |
-| **Python dashboard** | <!-- <img src="demo/dashboard.png" width="380"> --> *demo/dashboard.png* |
 
 ## How it works
 
@@ -82,18 +67,29 @@ flowchart LR
 
 ## Model accuracy
 
-Average miss as a percentage of the true value, over all five series and 1 to 3 years ahead, on years each model could not see (lower is better):
+Every model was tested the way it would be used: from 2012 onwards it was refitted on the years before each date and asked to forecast the next 1 to 3 years, then compared with what really happened. Tables are ranked by MAPE (lower is better). The best value in each column is in **bold**. Premiums and claims are in M.TND.
 
-| Rank | Model | Average error |
-|---|---|---|
-| 1 | Random Forest | 3.767% |
-| 2 | **Ensemble (final forecast)** | **3.788%** |
-| 3 | Gradient boosting | 3.831% |
-| 4 | LSTM | 4.363% |
-| 5 | ARIMA | 4.371% |
-| 6 | Prophet | 4.432% |
+| Metric | Meaning |
+|---|---|
+| **MAPE %** | Average miss as a percentage of the true value |
+| **MAE** | Average miss in M.TND |
+| **RMSE** | Like MAE but large misses count more, in M.TND |
+| **CV-RMSE %** | RMSE as a percentage of the average value |
+| **R²** | Share of the movement the model explains (1 is perfect) |
+| **MASE** | Error compared with repeating last year's value; below 1 beats that simple rule |
+| **Bias** | Average signed miss in M.TND; positive means the forecast was too high |
+| **80% range hit %** | How often the real value fell inside the model's 80% range |
 
-The top three are practically tied, so the final forecast uses the ensemble for steadier results. The full per-series tables are in `step_02_forecasting/results/metrics.csv`.
+### All five series
+
+| Rank | Model | MAPE % | MAE | RMSE | CV-RMSE % | R² | MASE | Bias | 80% range hit % |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Random Forest | **3.767** | 48.4 | **57.3** | **4.508** | **0.954** | 0.935 | -10.2 | 76.4 |
+| 2 | **Ensemble (final forecast)** | 3.788 | **48.1** | 57.7 | 4.519 | **0.954** | **0.933** | -6.4 | 76.4 |
+| 3 | Gradient boosting | 3.831 | 49.0 | 57.6 | 4.559 | 0.950 | 0.957 | -6.3 | 76.4 |
+| 4 | LSTM | 4.363 | 56.5 | 69.8 | 5.255 | 0.934 | 1.067 | **-0.5** | 76.4 |
+| 5 | ARIMA | 4.371 | 53.2 | 62.7 | 5.187 | 0.936 | 1.083 | -6.2 | 76.4 |
+| 6 | Prophet | 4.432 | 56.6 | 68.2 | 5.237 | 0.939 | 1.087 | -7.4 | 76.4 |
 
 ## Quick start
 
@@ -149,37 +145,6 @@ Try:
 | **Gemini** | `GEMINI_API_KEY` is set in `.env` | Written answers with ratios, shares and growth, built from tool results |
 | **Offline** | No key | Templated answers from the same tools, no network at all |
 
-If the main Gemini model is busy or retired, the backend tries the fallback models in `GEMINI_FALLBACK_MODELS`. If the backend is not running, the page answers from the numbers it carries.
-
-**Safety by design:** tools are read-only and allow-listed (no file paths from the user), the key never reaches the browser, requests are rate-limited, and the only optional web access is live weather from one named host, off by default.
-
-### Set up the key
-
-Copy `.env.example` to `.env` in the project root and fill it in:
-
-```ini
-GEMINI_API_KEY=your-key-here
-GEMINI_MODEL=gemini-3.5-flash-lite
-GEMINI_FALLBACK_MODELS=gemini-3.1-flash-lite,gemini-3.7-flash
-ENABLE_WEB=false
-```
-
-`.env` is ignored by git. Never put a key in the frontend or commit it.
-
-## Project structure
-
-```text
-.
-├── data/                    raw data (files not pushed) + README of every source
-│   └── processed/           cleaned tables made by step 1
-├── step_01_extraction/      cleaning, merging, auditing
-├── step_02_forecasting/     models, backtests, results, plots
-├── step_03_dashboard/       Dash dashboard (7 tabs)
-├── backend/                 chat server, tools, Gemini and offline models, tests
-├── frontend/                web app (HTML, CSS, JavaScript, no build tools)
-└── .env.example             settings template
-```
-
 ## Tests
 
 ```bash
@@ -187,27 +152,6 @@ python -m unittest discover -s backend/tests
 ```
 
 38 checks for the backend (tools, request handling, parsing, security). They use no network and no real key.
-
-## Limits and honesty
-
-- **Few data points.** Each series has only 22 yearly values, so the models are deliberately small and the results carry real uncertainty.
-- **The 80% range is a guide.** It comes from past errors, of which there are few.
-- **Outside data helps only a little.** The economy, jobs, harvests and weather add little to a series' own history, and none of the models forecasts the weather.
-- **Shocks are not predicted.** An event like Covid in 2020 cannot be foreseen from earlier years, and the forecasts assume none.
-- **Some sources have gaps.** Where the sources disagree or are missing, the choice is logged in `data/processed/preprocessing_log.csv`.
-
-## Privacy and what is not pushed
-
-This repository holds code only. It does **not** contain: your `.env` and keys, any csv file except the model metrics, the data folders' contents, trained models (`.joblib` and `.json` in the `model/` folders), local tool settings, or caches. Rebuild the data and models with the commands above.
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| Chat says "Page only" | The backend is not running. Start `python backend/server.py` and open the address it prints |
-| "The language model could not be reached" | The model is busy or its name was retired. Check `GEMINI_MODEL` and `GEMINI_FALLBACK_MODELS` in `.env`, then restart the backend |
-| Backend changes have no effect | Restart the backend (Python reads its files only at start) and hard-refresh the page with Ctrl+F5 |
-| Dashboard or chat shows no forecasts | Run steps 1 and 2 first so `data/processed` and `results/forecasts.csv` exist |
 
 ## Data sources
 
