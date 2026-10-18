@@ -9,7 +9,9 @@
 ![Assistant](https://img.shields.io/badge/Assistant-Gemini%20%2B%20offline%20fallback-1f8f82)
 ![Data](https://img.shields.io/badge/Data-2003%E2%80%932024-c08a3e)
 
-<img src="demo/demo.gif" alt="Demo: the dashboard pages, then the chat assistant answering questions" width="900">
+<p align="center">
+  <img src="./demo/demo.gif" alt="Demo of the dashboard and the chat assistant" width="900">
+</p>
 
 </div>
 
