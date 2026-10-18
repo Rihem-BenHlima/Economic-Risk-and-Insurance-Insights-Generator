@@ -38,8 +38,6 @@ You can explore it three ways: a **web app** with a built-in **chat assistant**,
 | **Final forecast** | Total premiums reach about **4,964 M.TND in 2027** (80% range 4,600 to 5,207), from 3,820 M.TND in 2024 |
 | **Assistant that cites its numbers** | Every figure comes from the project's files through read-only tools, never from the model's memory |
 
-> Forecasts are model estimates, not facts. With only 22 yearly points per series the uncertainty is real; see [Limits](#limits-and-honesty).
-
 ## Demo
 
 <p align="center">
