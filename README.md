@@ -2,7 +2,7 @@
 
 # Economic Risk and Insurance Insights Generator
 
-**From raw official statistics to honest forecasts of the Tunisian insurance market, with a dashboard and an AI assistant you can ask in plain English.**
+**Transforming official Tunisian insurance statistics into actionable market forecasts through an interactive dashboard and an AI assistant that answers questions in natural language**
 
 ![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)
 ![Forecasting](https://img.shields.io/badge/Models-ARIMA%20·%20Prophet%20·%20GBM%20·%20Random%20Forest%20·%20LSTM-1f4e8c)
